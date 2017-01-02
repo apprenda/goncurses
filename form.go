@@ -236,3 +236,9 @@ func (f *Form) UnPost() error {
 	err := C.unpost_form(f.form)
 	return ncursesError(syscall.Errno(err))
 }
+
+func (f *Form) Current() (*Field, error) {
+	field, err := C.current_field(f.form)
+
+	return (*Field)(field), ncursesError(err)
+}
